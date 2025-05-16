@@ -47,10 +47,6 @@ function CardPagination({
           </PaginationItem>
         )}
 
-        {/* <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem> */}
-
         <PaginationItem>
           <PaginationLink
             href="#"
