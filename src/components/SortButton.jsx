@@ -21,12 +21,12 @@ import FilterAndSort from "../context/FilterAndSortContext";
 const SortButton = () => {
   const [open, setOpen] = useState();
   const [value, setValue] = useState();
-  const { setSortValue, sortValue, setSortResult, sortResult, sortValueInput } =
-    FilterAndSort();
+  const { setSortValue, sortValue, sortValueInput } = FilterAndSort();
 
   useEffect(() => {
     sortValueInput(sortValue);
   }, [sortValue]);
+
   const sortOptions = [
     {
       value: "name",
