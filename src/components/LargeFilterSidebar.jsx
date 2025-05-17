@@ -117,7 +117,7 @@ const LargeFilterSidebar = () => {
                       name="breed_group"
                       id={breedGroup}
                       value={breedGroup}
-                      checked={filterValues.breed_group == { breedGroup }}
+                      // checked={filterValues.breed_group == { breedGroup }}
                       onChange={(e) =>
                         e.target.checked &&
                         setFilterValues({
