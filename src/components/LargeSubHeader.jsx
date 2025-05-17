@@ -1,6 +1,7 @@
 import React from "react";
+import SortButton from "./SortButton";
+
 import { IoMdArrowDropdown } from "react-icons/io";
-import SortButton from "./sortButton";
 import { Fade } from "react-awesome-reveal";
 import FilterAndSort from "../context/FilterAndSortContext";
 
