@@ -117,7 +117,7 @@ const LargeFilterSidebar = () => {
                       name="breed_group"
                       id={breedGroup}
                       value={breedGroup}
-                      // checked={filterValues.breed_group == { breedGroup }}
+                      checked={filterValues.breed_group == { breedGroup }}
                       onChange={(e) =>
                         e.target.checked &&
                         setFilterValues({
@@ -148,7 +148,7 @@ const LargeFilterSidebar = () => {
                       name="breed"
                       id={breed}
                       value={breed}
-                      checked={filterValues?.breed === { breed }}
+                      checked={filterValues?.breed === breed}
                       onChange={(e) =>
                         e.target.checked &&
                         setFilterValues({
@@ -198,7 +198,7 @@ const LargeFilterSidebar = () => {
                     value={country}
                     id="country"
                     name={country.toLowerCase()}
-                    selected={filterValues?.country_of_origin == { country }}
+                    selected={filterValues?.country_of_origin == country}
                   >
                     {country}
                   </option>
