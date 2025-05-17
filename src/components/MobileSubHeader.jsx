@@ -1,4 +1,4 @@
-import SortButton from "./sortButton";
+import SortButton from "./SortButton";
 import PopoverFilter from "./PopoverFilter";
 import { Fade } from "react-awesome-reveal";
 // import { FilterAndSort } from "../context/FilterAndSortContext";
