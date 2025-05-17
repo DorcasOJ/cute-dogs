@@ -7,16 +7,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { FiFilter } from "react-icons/fi";
-import dogData from "../data/dogs_data.json";
-import {
-  dogBreed,
-  dogBreedGroup,
-  dogCountryOfOrigin,
-  temperamentUnique,
-} from "../data/dogs_data_details";
+import dogData from "../data/dogs.json";
+
+import FilterAndSort from "../context/FilterAndSortContext";
+import { useEffect } from "react";
 
 function PopoverFilter() {
   // const temperaments = [...new Set(dogData.dogs.map((dog) =>
+  const {
+    setFilterValues,
+    filterValues,
+    filterOptions,
+    filteredOptions,
+    filterResult,
+  } = FilterAndSort();
+  useEffect(() => {
+    const options = filteredOptions(filterResult);
+  }, [filterResult]);
 
   return (
     <Popover>
@@ -33,171 +40,201 @@ function PopoverFilter() {
         <div className="grid gap-4 ">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Filter Images</h4>
-            <p className="text-sm text-muted-foreground">
-              Set the dimensions for the layer.
-            </p>
           </div>
+
           <div className="grid gap-2 ">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="breed">Breed</Label>
+            {filterOptions?.dogBreed && (
+              <div className="grid grid-cols-3 items-center gap-4">
+                <Label htmlFor="breed">Breed</Label>
 
-              <select
-                name="breed"
-                id="breed"
-                className="col-span-2 h-8 ps-1 border rounded-md"
-              >
-                <option
-                  value="select"
-                  className="col-span-2 h-8"
-                  disabled="disabled"
-                  selected
+                <select
+                  name="breed"
+                  id="breed"
+                  className="col-span-2 h-8 ps-1 border rounded-md"
+                  onChange={(e) =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                 >
-                  select
-                </option>
-                {dogBreed.map((breed) => (
                   <option
-                    value={breed.replace(" ", "").toLowerCase()}
+                    value="select"
                     className="col-span-2 h-8"
+                    disabled="disabled"
+                    selected
                   >
-                    {breed}
+                    select
                   </option>
-                ))}
-              </select>
-            </div>
+                  {filterOptions?.dogBreed.map((breed) => (
+                    <option
+                      value={breed}
+                      className="col-span-2 h-8"
+                      selected={filterValues?.breed == { breed }}
+                    >
+                      {breed}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="breedGroup">Breed Group</Label>
+            {filterOptions?.dogBreedGroup && (
+              <div className="grid grid-cols-3 items-center gap-4">
+                <Label htmlFor="breedGroup">Breed Group</Label>
 
-              <select
-                name="breedGroup"
-                id="breedGroup"
-                className="col-span-2 h-8 ps-1 border rounded-md"
-              >
-                <option
-                  value="select"
-                  className="col-span-2 h-8"
-                  disabled="disabled"
-                  selected
+                <select
+                  name="breed_group"
+                  id="breedGroup"
+                  className="col-span-2 h-8 ps-1 border rounded-md"
+                  onChange={(e) =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                 >
-                  select
-                </option>
-
-                {dogBreedGroup.map((group) => (
                   <option
-                    value={group.replace(" ", "").toLowerCase()}
+                    value="select"
                     className="col-span-2 h-8"
+                    disabled="disabled"
+                    selected
                   >
-                    {group}
+                    select
                   </option>
-                ))}
-              </select>
-            </div>
 
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="country">Country of origin</Label>
+                  {filterOptions?.dogBreedGroup.map((group) => (
+                    <option
+                      value={group}
+                      className="col-span-2 h-8"
+                      selected={filterValues?.breed_group == { group }}
+                    >
+                      {group}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
-              <select
-                name="country"
-                id="country"
-                className="col-span-2 h-8 ps-1 border rounded-md"
-              >
-                <option
-                  value="select"
-                  className="col-span-2 h-8"
-                  disabled="disabled"
-                  selected
+            {filterOptions?.dogCountryOfOrigin && (
+              <div className="grid grid-cols-3 items-center gap-4">
+                <Label htmlFor="country">Country of origin</Label>
+
+                <select
+                  name="country_of_origin"
+                  id="country"
+                  className="col-span-2 h-8 ps-1 border rounded-md"
+                  onChange={(e) =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                 >
-                  select
-                </option>
-                {dogCountryOfOrigin.map((country) => (
                   <option
-                    value={country.replace(" ", "").toLowerCase()}
+                    value="select"
                     className="col-span-2 h-8"
+                    disabled="disabled"
+                    selected
                   >
-                    {country}
+                    select
                   </option>
-                ))}
-              </select>
-            </div>
+                  {filterOptions.dogCountryOfOrigin.map((country) => (
+                    <option
+                      value={country}
+                      className="col-span-2 h-8"
+                      selected={filterValues?.country_of_origin == { country }}
+                    >
+                      {country}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="lifeSpan">Max Life-span (years)</Label>
+            {filterOptions?.gender && (
+              <div className="grid grid-cols-3 items-center gap-4">
+                <Label htmlFor="gender">Gender</Label>
 
-              <Input id="lifeSpan" value="2" className="col-span-2 h-8 " />
-            </div>
-
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="temperament">Temperaments</Label>
-
-              <select
-                name="temperament"
-                id="temperament"
-                className="col-span-2 h-8 ps-1 border rounded-md"
-              >
-                <option
-                  value="select"
-                  className="col-span-2 h-8"
-                  disabled="disabled"
-                  selected
+                <select
+                  name="gender"
+                  id="gender"
+                  className="col-span-2 h-8 ps-1 border rounded-md"
+                  onChange={(e) =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                 >
-                  select
-                </option>
-
-                {temperamentUnique.map((temperament) => (
-                  <option value={temperament} className="col-span-2 h-8">
-                    {temperament}
+                  <option
+                    value="select"
+                    className="col-span-2 h-8"
+                    disabled="disabled"
+                    selected
+                  >
+                    select
                   </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="gender">Gender</Label>
-
-              <select
-                name="gender"
-                id="gender"
-                className="col-span-2 h-8 ps-1 border rounded-md"
-              >
-                <option
-                  value="male"
-                  className="col-span-2 h-8"
-                  disabled="disabled"
-                  selected
-                >
-                  select
-                </option>
-                <option value="male" className="col-span-2 h-8">
-                  Male
-                </option>
-                <option value="female" className="col-span-2 h-8">
-                  Female
-                </option>
-              </select>
-            </div>
-
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="price">Price (max)</Label>
-              <Input id="price" value="30000" className="col-span-2 h-8" />
-            </div>
+                  {filterOptions.gender.map((g) => (
+                    <option
+                      value={g}
+                      name="gender"
+                      className="col-span-2 h-8"
+                      selected={filterValues?.gender == { g }}
+                    >
+                      {g}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="vaccinated">Vaccinated</Label>
               <Input
                 id="vaccinated"
+                name="vaccinated"
                 type="checkbox"
                 className="col-span-2 h-8"
+                checked={filterValues?.vaccinated == true}
+                onChange={(e) => {
+                  () =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: true,
+                    });
+                }}
               />
             </div>
+
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="microchipped">MicroChipped</Label>
               <Input
                 id="microchipped"
+                name="microchipped"
                 type="checkbox"
+                checked={filterValues?.microchipped == true}
                 className="col-span-2 h-8"
+                onChange={(e) => {
+                  () =>
+                    setFilterValues({
+                      ...filterValues,
+                      [e.target.name]: true,
+                    });
+                }}
               />
             </div>
           </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={() => {
+              window.location.reload(true);
+            }}
+            className="cursor-pointer"
+          >
+            Clear all
+          </button>
         </div>
       </PopoverContent>
     </Popover>

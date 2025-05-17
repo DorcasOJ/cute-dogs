@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import MobileSubHeader from "../components/mobileSubHeader";
 import LargeSubHeader from "../components/largeSubHeader";
 import LargeFilterSidebar from "../components/LargeFilterSidebar";
-import dogData from "../data/dogs_data.json";
+import dogData from "../data/dogs.json";
 import CardRows from "../components/CardRows";
 import CardPagination from "../components/CardPagination";
 

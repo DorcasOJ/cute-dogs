@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-label": "^2.1.6",
     "@radix-ui/react-popover": "^1.1.13",
@@ -20,10 +21,12 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "daisyui": "^5.0.35",
+    "framer-motion": "^12.12.1",
     "input": "^1.0.1",
     "label": "^0.2.2",
     "lucide-react": "^0.510.0",
     "react": "^19.1.0",
+    "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.0",

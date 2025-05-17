@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,28 +16,48 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import FilterAndSort from "../context/FilterAndSortContext";
 
 const SortButton = () => {
   const [open, setOpen] = useState();
   const [value, setValue] = useState();
+  const { setSortValue, sortValue, setSortResult, sortResult, sortValueInput } =
+    FilterAndSort();
+
+  useEffect(() => {
+    sortValueInput(sortValue);
+  }, [sortValue]);
   const sortOptions = [
     {
       value: "name",
-      label: "Name",
+      label: "Name Asc",
     },
     {
       value: "likes",
-      label: "Popular",
+      label: "Most Popular",
+    },
+    {
+      value: "likes_least",
+      label: "Least Popular",
+    },
+    {
+      value: "age_months_desc",
+      label: "Age Desc",
     },
     {
       value: "age_months",
-      label: "Age",
+      label: "Age Asc",
+    },
+    {
+      value: "price_naria_higest",
+      label: "Highest price",
     },
     {
       value: "price_naria",
-      label: "price",
+      label: "Lowest price",
     },
   ];
+  console.log();
   return (
     <>
       <Popover open={open} onOpenChange={setOpen}>
@@ -46,11 +66,12 @@ const SortButton = () => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[130px] sm:w-[200px] h-[30pxp] justify-around btn-outline border border-[#0034595e] rounded-2xl text-lg font-medium cursor-pointer"
+            className="w-[200px] sm:w-[250px] h-[30pxp] justify-around btn-outline border border-[#0034595e] rounded-2xl text-lg font-medium cursor-pointer"
           >
-            {value
-              ? sortOptions.find((sortOption) => sortOption.value === value)
-                  ?.label
+            {sortValue
+              ? `Sort by ${
+                  sortOptions.find((u) => (u.value = sortValue))["label"]
+                }`
               : "Sort by..."}
             <ChevronsUpDown className="opacity-50" />
           </Button>
@@ -65,7 +86,7 @@ const SortButton = () => {
                     key={sortOption.value}
                     value={sortOption.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
+                      setSortValue(currentValue === value ? "" : currentValue);
                       setOpen(false);
                     }}
                   >
