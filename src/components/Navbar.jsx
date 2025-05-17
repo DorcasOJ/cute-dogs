@@ -19,7 +19,7 @@ const Navbar = () => {
           </span>
         </div>
         <div className="inline cursor-pointer">
-          <img src="/public/images/logo_svg.svg" alt="logo" />
+          <img src="/logo_svg.svg" alt="logo" />
         </div>
         <div className=" hover:border border-dashed  border-gray-400 mr-2">
           <CiSearch className="text-3xl font-bold cursor-pointer" />
@@ -28,7 +28,7 @@ const Navbar = () => {
 
       <div className="hidden md:flex items-center justify-between pt-10 pb-5 gap-x-12 max-w-7xl mx-auto px-8 7xl:px-0  ">
         <div className="inline cursor-pointer">
-          <img src="/public/images/logo_svg.svg" alt="logo" />
+          <img src="/logo_svg.svg" alt="logo" />
         </div>
         <div className="flex w-full lg:w-[70%] xl:w-full ">
           <ul className="list-none flex justify-between items-center w-full text-base text-[#003459]  ">
