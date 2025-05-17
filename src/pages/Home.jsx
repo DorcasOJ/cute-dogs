@@ -1,12 +1,9 @@
 // import Hero from "daisyui/components/hero";
 import Hero from "../components/Hero";
-import React, { useEffect, useRef, useState } from "react";
-import MobileSubHeader from "../components/mobileSubHeader";
-import LargeSubHeader from "../components/largeSubHeader";
+import MobileSubHeader from "../components/MobileSubHeader";
+import LargeSubHeader from "../components/LargeSubHeader";
 import LargeFilterSidebar from "../components/LargeFilterSidebar";
-import dogData from "../data/dogs.json";
 import CardRows from "../components/CardRows";
-import CardPagination from "../components/CardPagination";
 
 const Home = () => {
   return (
