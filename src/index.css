@@ -12,9 +12,14 @@ body {
   font-weight: 400;
   font-style: normal;
   background-color: #f8f8fc;
+
 }
 
-@layer base {}
+@layer base {
+  .cursive {
+    font-family: cursive;
+  }
+}
 
 @theme inline {
 

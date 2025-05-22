@@ -29,6 +29,10 @@ const SortButton = () => {
 
   const sortOptions = [
     {
+      value: "name_desc",
+      label: "Name Desc",
+    },
+    {
       value: "name",
       label: "Name Asc",
     },
@@ -70,7 +74,7 @@ const SortButton = () => {
           >
             {sortValue
               ? `Sort by ${
-                  sortOptions.find((u) => (u.value = sortValue))["label"]
+                  sortOptions.find((u) => u.value === sortValue)["label"]
                 }`
               : "Sort by..."}
             <ChevronsUpDown className="opacity-50" />

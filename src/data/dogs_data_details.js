@@ -1,3 +1,5 @@
 import dogData from "./dogs.json";
 
-export const imageUrls = dogData.dogs.map((item) => item.image_url);
+export const allCountryOfOrigin = [
+  ...new Set(dogData.dogs.map((item) => item.country_of_origin)),
+];

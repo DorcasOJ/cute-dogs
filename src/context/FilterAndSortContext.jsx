@@ -1,16 +1,49 @@
 import { useContext, useState, createContext, useEffect } from "react";
 import dogData from "../data/dogs.json";
+import { shuffleData } from "../model/helpers";
+import { useLocation } from "react-router-dom";
 
 export const FilterContext = createContext();
 export function FilterContextProvider({ children }) {
-  const [filterValues, setFilterValues] = useState();
-  const [filterOptions, setFilterOptions] = useState();
-  const [filterResult, setFilterResult] = useState(dogData.dogs);
-  const [sortValue, setSortValue] = useState();
-  const [sortResult, setSortResult] = useState();
+  const [filterValues, setFilterValues] = useState({});
+  const [filterOptions, setFilterOptions] = useState({});
+  const [filterResult, setFilterResult] = useState(shuffleData(dogData.dogs));
+  const [sortValue, setSortValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [loadAnimation, setLoadAnimation] = useState({
+    heroCompleted: false,
+  });
+  const [currentPage, setCurrentPage] = useState("home");
 
-  function returnFilteredDogs(filterResult) {
-    if (filterResult || filterValues) {
+  function enableSearchFunction(location) {
+    const path = location.pathname.split("/").filter(Boolean).pop() || "home";
+    setCurrentPage(String(path));
+  }
+
+  function returnSearchResult(searchValue) {
+    const results = shuffleData(dogData.dogs).filter((obj) =>
+      Object.values(obj).some((value) =>
+        String(value)
+          .toLowerCase()
+          .includes(
+            String(searchValue)
+              .trim()
+              .replace(/\s+/g, " ")
+              .replace(/[^\w\s]/gi, "")
+              .toLowerCase()
+          )
+      )
+    );
+
+    setFilterResult(results);
+  }
+
+  function cancelSearchResult() {
+    setFilterResult(shuffleData(dogData.dogs));
+  }
+
+  function returnFilteredDogs(filterValues) {
+    if (filterResult && filterValues) {
       const results = dogData.dogs.filter((item) =>
         Object.entries(filterValues).every(
           ([key, value]) => item[key] === value
@@ -18,9 +51,6 @@ export function FilterContextProvider({ children }) {
       );
 
       setFilterResult(results);
-
-      // return results;
-      // return results;
     }
 
     return;
@@ -47,36 +77,6 @@ export function FilterContextProvider({ children }) {
     }
     return;
   }
-  //   async function filterGender() {}
-
-  //  {
-  //     value: "name",
-  //     label: "Name Asc",
-  //   },
-  //   {
-  //     value: "likes",
-  //     label: "Most Popular",
-  //   },
-  //    {
-  //     value: "likes_least",
-  //     label: "Least Popular",
-  //   },
-  //    {
-  //     value: "likes",
-  //     label: "Age Desc",
-  //   },
-  //   {
-  //     value: "age_months",
-  //     label: "Age Asc",
-  //   },
-  //   {
-  //     value: "price_naria_higest",
-  //     label: "Highest price",
-  //   }
-  //   {
-  //     value: "price_naria",
-  //     label: "Lowest price",
-  //   },
 
   function sortValueInput(sortValue) {
     if (sortValue === "likes") {
@@ -90,16 +90,22 @@ export function FilterContextProvider({ children }) {
       setFilterResult(
         [...filterResult].sort((a, b) => b.price_naira - a.price_naira)
       );
-    } else if (sortValue === "like_least") {
+    } else if (sortValue === "likes_least") {
       setFilterResult([...filterResult].sort((a, b) => a.like - b.like));
     } else if (sortValue === "name") {
-      setFilterResult([...filterResult].sort((a, b) => a.name - b.name));
+      setFilterResult(
+        filterResult.sort((a, b) => a.name.localeCompare(b.name))
+      );
+    } else if (sortValue === "name_desc") {
+      setFilterResult(
+        filterResult.sort((a, b) => b.name.localeCompare(a.name))
+      );
     } else if (sortValue === "price_naria") {
       setFilterResult(
         [...filterResult].sort((a, b) => a.price_naira - b.price_naira)
       );
     } else if (sortValue === "age_months_desc") {
-      [...filterResult].sort((a, b) => b.age_months - a.age_months);
+      filterResult.sort((a, b) => b.age_months - a.age_months);
     }
   }
 
@@ -120,9 +126,15 @@ export function FilterContextProvider({ children }) {
         returnFilteredDogs,
         setSortValue,
         sortValue,
-        setSortResult,
-        sortResult,
+        setSearchValue,
+        searchValue,
         sortValueInput,
+        setLoadAnimation,
+        loadAnimation,
+        returnSearchResult,
+        cancelSearchResult,
+        currentPage,
+        enableSearchFunction,
       }}
     >
       {children}

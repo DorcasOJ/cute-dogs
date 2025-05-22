@@ -11,7 +11,6 @@ const Home = () => {
       <Hero />
       <div className="flex flex-col md:hidden ">
         <MobileSubHeader />
-
         <CardRows />
       </div>
       <div className="hidden md:flex max-w-7xl mx-auto ">

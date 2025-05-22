@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import emailjs from "emailjs-com";
 
 export function shuffleData(array) {
   const shuffled = array.map((obj) => ({ ...obj }));
@@ -31,4 +31,17 @@ export function truncateText(text, length = 15) {
 
 export function formatPrice(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function sendMessage(serviceId, templateId, form, userId) {
+  emailjs.sendForm(serviceId, templateId, form, userId).then(
+    (result) => {
+      console.log(result.text);
+      alert("Your message has been sent!");
+    },
+    (error) => {
+      console.log(error.text);
+      alert("An error occurred, message not sent");
+    }
+  );
 }

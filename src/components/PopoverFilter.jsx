@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { FiFilter } from "react-icons/fi";
-import dogData from "../data/dogs.json";
 
 import FilterAndSort from "../context/FilterAndSortContext";
 import { useEffect } from "react";
@@ -20,6 +19,8 @@ function PopoverFilter() {
     filterOptions,
     filteredOptions,
     filterResult,
+    cancelSearchResult,
+    setSearchValue,
   } = FilterAndSort();
   useEffect(() => {
     const options = filteredOptions(filterResult);
@@ -30,7 +31,7 @@ function PopoverFilter() {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="text-[#003459] font-medium flex items-center gap-1 sm:w-[100px] sm:h-[40px] cursor-pointer"
+          className="text-[#003459] text-lg font-medium flex items-center gap-1 w-[100px] sm:w-[150px] sm:h-[40px] cursor-pointer"
         >
           <FiFilter className="text-2xl font-bolder" />
           Filter
@@ -68,6 +69,7 @@ function PopoverFilter() {
                   </option>
                   {filterOptions?.dogBreed.map((breed) => (
                     <option
+                      key={breed}
                       value={breed}
                       className="col-span-2 h-8"
                       selected={filterValues?.breed == { breed }}
@@ -105,6 +107,7 @@ function PopoverFilter() {
 
                   {filterOptions?.dogBreedGroup.map((group) => (
                     <option
+                      key={group}
                       value={group}
                       className="col-span-2 h-8"
                       selected={filterValues?.breed_group == { group }}
@@ -141,6 +144,7 @@ function PopoverFilter() {
                   </option>
                   {filterOptions.dogCountryOfOrigin.map((country) => (
                     <option
+                      key={country}
                       value={country}
                       className="col-span-2 h-8"
                       selected={filterValues?.country_of_origin == { country }}
@@ -175,8 +179,9 @@ function PopoverFilter() {
                   >
                     select
                   </option>
-                  {filterOptions.gender.map((g) => (
+                  {filterOptions.gender.map((g, index) => (
                     <option
+                      key={index}
                       value={g}
                       name="gender"
                       className="col-span-2 h-8"
@@ -189,13 +194,15 @@ function PopoverFilter() {
               </div>
             )}
 
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="vaccinated">Vaccinated</Label>
+            <div className="grid grid-cols-2 items-center gap-4">
+              <Label htmlFor="vaccinated" className="py-4 pe-70">
+                Vaccinated
+              </Label>
               <Input
                 id="vaccinated"
                 name="vaccinated"
                 type="checkbox"
-                className="col-span-2 h-8"
+                className="h-8"
                 checked={filterValues?.vaccinated == true}
                 onChange={(e) => {
                   () =>
@@ -207,14 +214,16 @@ function PopoverFilter() {
               />
             </div>
 
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="microchipped">MicroChipped</Label>
+            <div className="grid grid-cols-2 items-center gap-1">
+              <Label htmlFor=" microchipped" className=" py-4 pe-70 w-[80%]">
+                MicroChipped
+              </Label>
               <Input
                 id="microchipped"
                 name="microchipped"
                 type="checkbox"
                 checked={filterValues?.microchipped == true}
-                className="col-span-2 h-8"
+                className=" h-8"
                 onChange={(e) => {
                   () =>
                     setFilterValues({
@@ -226,12 +235,14 @@ function PopoverFilter() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-3">
           <button
             onClick={() => {
-              window.location.reload(true);
+              setFilterValues({});
+              cancelSearchResult();
+              setSearchValue("");
             }}
-            className="cursor-pointer"
+            className="w-full cursor-pointer py-2 hover:bg-neutral-200 hover:rounded-2xl "
           >
             Clear all
           </button>

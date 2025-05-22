@@ -5,28 +5,30 @@ import { Fade } from "react-awesome-reveal";
 import FilterAndSort from "../context/FilterAndSortContext";
 
 const MobileSubHeader = () => {
-  const { filterValues, filterResult } = FilterAndSort();
+  const { filterValues, filterResult, loadAnimation } = FilterAndSort();
   return (
-    <div className="w-full py-8 md:hidden">
-      <div className="px-4">
-        <div className="flex items-center justify-around sm:justify-between ">
-          <Fade
-            delay={100} // Wait before starting
-            duration={1000} // Animation duration
-            fraction={0.5} // Trigger when 50% visible
-            triggerOnce
-          >
-            <SortButton />
-            <PopoverFilter />
+    loadAnimation.heroCompleted && (
+      <div className="w-full py-8 md:hidden">
+        <div className="px-4">
+          <div className="flex items-center justify-around sm:justify-between ">
+            <Fade
+              delay={100} // Wait before starting
+              duration={1000} // Animation duration
+              fraction={0.5} // Trigger when 50% visible
+              triggerOnce
+            >
+              <SortButton />
+              <PopoverFilter />
+            </Fade>
+          </div>
+          <Fade>
+            <div className="pt-4 ps-4">
+              {filterResult && filterResult.length} Dogs Selected
+            </div>
           </Fade>
         </div>
-        <Fade>
-          <div className="pt-4 ps-4">
-            {filterResult && filterResult.length} Dogs Selected
-          </div>
-        </Fade>
       </div>
-    </div>
+    )
   );
 };
 

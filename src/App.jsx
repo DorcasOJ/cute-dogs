@@ -1,19 +1,33 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import { FilterContextProvider } from "./context/FilterAndSortContext";
+import Error from "./pages/Error";
+import Footer from "./components/Footer";
+import FilterAndSort from "./context/FilterAndSortContext";
+import DogDetails from "./pages/DogDetails";
+import Company from "./pages/Company";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  const { enableSearchFunction } = FilterAndSort();
+  const location = useLocation();
+  enableSearchFunction(location);
 
   return (
-    <>
+    <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dog/:id" element={<DogDetails />} />
+        <Route path="/company" element={<Company />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Error />} />
       </Routes>
-    </>
+      <Footer />
+    </div>
   );
 }
 

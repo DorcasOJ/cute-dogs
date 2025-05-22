@@ -1,7 +1,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -17,10 +16,10 @@ function CardPagination({
   itemPerPage,
   length,
 }) {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(1);
 
   return (
-    <Pagination className="py-4 flex items-center gap-4">
+    <Pagination className=" pt-4 flex items-center gap-4  min-h-[110px] w-full">
       <span>Pages </span>
       <PaginationContent>
         {startIndex > 9 && startIndex < length ? (
@@ -39,11 +38,11 @@ function CardPagination({
           <PaginationItem>
             <PaginationLink
               href="#"
-              isActive={clicked === "prev"}
+              isActive={clicked === 1}
               onClick={() => {
                 setStartIndex(0);
                 setEndIndex(itemPerPage);
-                setClicked("prev");
+                setClicked(1);
               }}
             >
               1
@@ -96,7 +95,7 @@ function CardPagination({
           </PaginationLink>
         </PaginationItem>
 
-        {startIndex >= 40 ? (
+        {length >= 40 ? (
           <PaginationItem>
             <PaginationLink
               href="#"
@@ -108,18 +107,20 @@ function CardPagination({
             </PaginationLink>
           </PaginationItem>
         ) : (
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              className={startIndex > 40 && "pointer-events-none opacity-0"}
-              onClick={() => {
-                setStartIndex(startIndex + itemPerPage);
-                setEndIndex(endIndex + itemPerPage);
-                setClicked(clicked + 1);
-              }}
-              isActive={clicked == 5}
-            />
-          </PaginationItem>
+          length > 10 && (
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                className={startIndex > 40 && "pointer-events-none opacity-0"}
+                onClick={() => {
+                  setStartIndex(startIndex + itemPerPage);
+                  setEndIndex(endIndex + itemPerPage);
+                  setClicked(clicked + 1);
+                }}
+                isActive={clicked == 5}
+              />
+            </PaginationItem>
+          )
         )}
       </PaginationContent>
     </Pagination>
