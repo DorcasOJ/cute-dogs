@@ -1,16 +1,16 @@
-### Monito Dogs
+# Monito Dogs
 
 An application that display cute dogs
 
-## Home Page
+### Home Page
 a list of dogs with filtering, sorting and pagination functionality
 
-## Contact Page
+### Contact Page
 contact form 
 
-## Company Pages
+### Company Pages
 
-## About Page
+### About Page
 
 
 
