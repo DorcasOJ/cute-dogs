@@ -9,7 +9,7 @@ const About = () => {
           We're built for the best care
         </span>
 
-        <p className=" md:tracking-wider text-xs text-gray-400 w-[55%]">
+        <p className=" md:tracking-wider text-xs text-gray-400 text-justify md:w-[80%] lg:w-[55%]">
           We are a community that love to care for dogs and would to sell to
           people who are ready to shower them with love Lorem ipsum dolor sit
           amet consectetur adipisicing elit. Repellat sequi praesentium
@@ -20,11 +20,11 @@ const About = () => {
         </p>
       </div>
 
-      <div className="flex flex-col items-center justify-center mt-12 ">
+      <div className="flex flex-col items-center justify-center mt-12 gap-y-8">
         <span className="text-xl font-normal tracking-wider md:text-3xl lg:text-2xl">
           Meet our team
         </span>
-        <p className="text-xs text-gray-400 w-[55%]">
+        <p className="text-xs text-gray-400 text-justify md:w-[80%] lg:w-[55%]">
           repellendus! Corporis odit ullam rerum distinctio minima earum,
           cupiditate alias iusto, provident soluta tenetur, animi consectetur.
           Vel, sed. Nulla. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -34,7 +34,7 @@ const About = () => {
         </p>
         <div className="flex items-center justify-center py-10  min-h-[600px]">
           <div className="grid grid-cols-1  gap-y-4 md:gap-y-10 md:gap-x-6 md:grid-cols-2 lg:grid-cols-3 ">
-            <div className="w-[270px] h-[400px] relative shadow">
+            <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
                 src="/images/about-team-1.jpg"
                 alt=""
@@ -56,7 +56,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="w-[270px] h-[400px] relative shadow">
+            <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px]  relative shadow">
               <img
                 src="/images/about-team-2.jpg"
                 alt=""
@@ -79,7 +79,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="w-[270px] h-[400px] relative shadow">
+            <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
                 src="/images/about-team-3.jpg"
                 alt=""
@@ -87,7 +87,7 @@ const About = () => {
               />
 
               <div className="absolute bottom-4 w-[80%] left-[10%]  bg-white-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 border border-white/30 text-white shadow-md py-2 px-5 flex flex-col gap-y-1">
-                <span className="text-xl">Alisa Stanlley</span>
+                <span className="text-xl">Alisa Stanley</span>
                 <div className="flex flex-col gap-y-1">
                   <span className="text-base">Public Relation Officer</span>
                   <p className="text-xs">
@@ -101,7 +101,7 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[270px] h-[400px] relative shadow">
+            <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
                 src="/images/about-dog-1.jpg"
                 alt=""
@@ -124,7 +124,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="w-[270px] h-[400px] relative shadow">
+            <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
                 src="/images/about-dog-2.jpg"
                 alt=""

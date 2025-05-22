@@ -16,7 +16,10 @@ export function FilterContextProvider({ children }) {
   const [currentPage, setCurrentPage] = useState("home");
 
   function enableSearchFunction(location) {
-    const path = location.pathname.split("/").filter(Boolean).pop() || "home";
+    const pathArray = location.pathname.split("/").filter(Boolean);
+
+    const path = pathArray[0] || "home";
+
     setCurrentPage(String(path));
   }
 

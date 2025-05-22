@@ -1,17 +1,14 @@
 import dogData from "../data/dogs.json";
 import { formatPrice } from "../model/helpers";
 import { Skeleton } from "./ui/skeleton";
+import StarRatings from "react-star-ratings";
 
 const DisplayDogData = ({ id }) => {
   return (
     <div className="py-5 grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3 lg:grid-cols-1 ">
       {Object.entries(dogData.dogs[id])
         .filter(
-          ([key]) =>
-            key !== "id" &&
-            key !== "like" &&
-            key !== "image_url" &&
-            key !== "color"
+          ([key]) => key !== "id" && key !== "image_url" && key !== "color"
         )
         .map(([key, value]) => (
           <div
@@ -30,12 +27,26 @@ const DisplayDogData = ({ id }) => {
                 value.toString()
               ) : key === "price_naira" ? (
                 <span> {formatPrice(value)} Naira </span>
+              ) : key === "like" ? (
+                <span>
+                  <StarRatings
+                    rating={value / 40}
+                    starRatedColor="red"
+                    numberOfStars={5}
+                    name="rating"
+                    starDimension="1rem"
+                    starSpacing=".2rem"
+                  />
+                </span>
               ) : (
                 value
               )}
             </span>
           </div>
         ))}
+      <div>
+        <span></span>
+      </div>
     </div>
   );
 };

@@ -16,13 +16,16 @@ const Contact = () => {
 
   const handleForm = (e) => {
     e.preventDefault;
+
     sendMessage(serviceId, templateId, contactForm.current, userId);
   };
 
   return (
     <div className="min-h-[80vh] max-w-7xl mx-auto px-8 7xl:px-0 pt-12 pb-36 ">
       <div className="lg:min-h-[60vh] flex flex-col lg:flex-row lg:gap-x-10 ">
-        <div className="bg-[url('/images/contact-us.jpg')] bg-cover min-h-[15vh] lg:self-stretch flex-1"></div>
+        <div className=" min-h-[15vh] lg:self-stretch flex-1 flex bg-gray-100">
+          <div className="w-full bg-[url('/images/contact-us.jpg')] bg-cover"></div>
+        </div>
 
         <div className="flex-1 px-4 py-8 flex flex-col gap-y-10">
           <span className="text-2xl font-normal tracking-wider md:text-4xl lg:text-5xl py-5 lg:py-0">
@@ -44,6 +47,7 @@ const Contact = () => {
                     id="firstName"
                     className="rounded-3xl ps-[42px] py-5"
                     placeholder="Enter your first name..."
+                    required
                   />
                 </span>
               </div>
@@ -58,6 +62,7 @@ const Contact = () => {
                     id="lastName"
                     className="rounded-3xl ps-[42px] py-5"
                     placeholder="Enter your last name..."
+                    required
                   />
                 </span>
               </div>
@@ -73,6 +78,7 @@ const Contact = () => {
                   id="emailAddress"
                   className="rounded-3xl ps-[42px] py-5"
                   placeholder="Enter your email address..."
+                  required
                 />
               </span>
             </div>
@@ -87,6 +93,7 @@ const Contact = () => {
                   id="phoneNumber"
                   className="rounded-3xl ps-[42px] py-5"
                   placeholder="+234 567 890 1234"
+                  required
                 />
               </span>
             </div>
@@ -101,6 +108,7 @@ const Contact = () => {
                   id="message"
                   className="border border-gray-200 shadow focus:shadow  rounded-3xl p-5 w-full"
                   placeholder="Enter your main text here..."
+                  required
                 />
               </span>
             </div>

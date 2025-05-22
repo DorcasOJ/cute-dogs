@@ -7,12 +7,20 @@ import { Fade } from "react-awesome-reveal";
 import GradientText from "./bits-ui/gradientText";
 import Ribbons from "./bits-ui/ribbons";
 import FilterAndSort from "../context/FilterAndSortContext";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   //hero background image load with skeleton
   const [bgImageLoaded, setBgImageLoaded] = useState(false);
   const [mobileBgLoaded, setMobileBgLoaded] = useState(false);
   const { setLoadAnimation, loadAnimation } = FilterAndSort();
+
+  function scrollDownToCards() {
+    window.scrollBy({
+      top: 1000,
+      behavior: "smooth",
+    });
+  }
 
   useEffect(() => {
     const img = new Image();
@@ -93,17 +101,22 @@ const Hero = () => {
                               });
                             }, 4000)}
                           >
-                            <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer btn-lg transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#fceed5] from-40% hover:to-[#003459] to-25% hover:shadow-none px-0">
-                              <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#003459] hover:to-[#fceed5] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5">
-                                View{" "}
-                                <span className="flex items-center gap-2">
-                                  Intro
-                                  <FaRegCirclePlay className="text-[#efeff0] text-lg" />
+                            <Link to="/intro">
+                              <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer btn-lg transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#fceed5] from-40% hover:to-[#003459] to-25% hover:shadow-none px-0">
+                                <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#003459] hover:to-[#fceed5] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5">
+                                  View{" "}
+                                  <span className="flex items-center gap-2">
+                                    Intro
+                                    <FaRegCirclePlay className="text-[#efeff0] text-lg" />
+                                  </span>
                                 </span>
-                              </span>
-                            </button>
+                              </button>
+                            </Link>
                           </GradientText>
-                          <button className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer btn-lg text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0">
+                          <button
+                            onClick={scrollDownToCards}
+                            className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer btn-lg text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0"
+                          >
                             <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-59% to-25% hover:text-transparent tracking-wider transition  text-[#003459] px-5">
                               Explore Now!
                             </span>
@@ -182,17 +195,22 @@ const Hero = () => {
                       </p>
 
                       <div className="flex flex-wrap gap-4 ps-3">
-                        <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-41% hover:to-[#fceed5] to-25% hover:shadow-none px-0">
-                          <span className="w-full h-full flex items-center gap-1 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5 py-1">
-                            View{" "}
-                            <span className="flex items-center gap-2">
-                              Intro
-                              <FaRegCirclePlay className="text-[#003459] text-lg" />
+                        <Link to="/intro">
+                          <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-41% hover:to-[#fceed5] to-25% hover:shadow-none px-0">
+                            <span className="w-full h-full flex items-center gap-1 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5 py-1">
+                              View{" "}
+                              <span className="flex items-center gap-2">
+                                Intro
+                                <FaRegCirclePlay className="text-[#003459] text-lg" />
+                              </span>
                             </span>
-                          </span>
-                        </button>
+                          </button>
+                        </Link>
 
-                        <button className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0">
+                        <button
+                          onClick={scrollDownToCards}
+                          className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0"
+                        >
                           <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-55% to-25% hover:text-transparent tracking-wider transition duration-50 text-[#003459]  px-4">
                             Explore Now!
                           </span>

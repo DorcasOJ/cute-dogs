@@ -8,6 +8,8 @@ import DogDetails from "./pages/DogDetails";
 import Company from "./pages/Company";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
+import Intro from "./pages/Intro";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -17,6 +19,7 @@ function App() {
 
   return (
     <div>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,6 +27,7 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/intro" element={<Intro />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
