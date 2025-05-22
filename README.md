@@ -1,7 +1,17 @@
-# Monito Dogs
+### Monito Dogs
 
-A single-page web application that display a list of dogs with filtering, sorting and pagination functionality
+An application that display cute dogs
 
-Live Demo 1 [live](https://themonitodogs.netlify.app/)
+## Home Page
+a list of dogs with filtering, sorting and pagination functionality
 
-Live Demo 2 [live](https://monito-dogs-git-update-repo-dorcasojs-projects.vercel.app/)
+## Contact Page
+contact form 
+
+## Company Pages
+
+## About Page
+
+
+
+Live Demo [live](https://682ef5560e4fc82ca4926eed--kiutdogs.netlify.app/))
