@@ -1,4 +1,4 @@
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player/lazy";
 import { Link } from "react-router-dom";
 import { RiArrowGoBackLine } from "react-icons/ri";
 

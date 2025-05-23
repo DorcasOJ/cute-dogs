@@ -36,6 +36,7 @@ const About = () => {
           <div className="grid grid-cols-1  gap-y-4 md:gap-y-10 md:gap-x-6 md:grid-cols-2 lg:grid-cols-3 ">
             <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
+                loading="lazy"
                 src="/images/about-team-1.jpg"
                 alt=""
                 className="object-cover w-full h-full"
@@ -58,6 +59,7 @@ const About = () => {
 
             <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px]  relative shadow">
               <img
+                loading="lazy"
                 src="/images/about-team-2.jpg"
                 alt=""
                 className="object-cover w-full h-full"
@@ -81,6 +83,7 @@ const About = () => {
 
             <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
+                loading="lazy"
                 src="/images/about-team-3.jpg"
                 alt=""
                 className="object-cover w-full h-full"
@@ -126,6 +129,7 @@ const About = () => {
 
             <div className="w-[240px] h-[370px] md:w-[270px] md:h-[400px] relative shadow">
               <img
+                loading="lazy"
                 src="/images/about-dog-2.jpg"
                 alt=""
                 className="object-cover w-full h-full"

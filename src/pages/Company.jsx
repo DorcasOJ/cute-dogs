@@ -22,6 +22,7 @@ const Company = () => {
           </div>
           <div className="flex-1">
             <img
+              loading="lazy"
               src="/images/company-dog-1.jpg"
               alt=""
               className="w-full h-full object-cover md:rounded-e-xl"
@@ -32,6 +33,7 @@ const Company = () => {
         <div className="flex flex-col-reverse md:flex-row md:gap-3 gap-6">
           <div className="flex-1">
             <img
+              loading="lazy"
               src="/images/company-dog-2.jpg"
               alt=""
               className="w-full max-h-[50vh] object-cover md:rounded-s-xl "
