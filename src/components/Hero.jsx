@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   //hero background image load with skeleton
-  const [bgImageLoaded, setBgImageLoaded] = useState(true);
+  const [bgImageLoaded, setBgImageLoaded] = useState(false);
   const [animationLoaded, setAnimationLoaded] = useState(false);
   const [mobileBgLoaded, setMobileBgLoaded] = useState(false);
   const { setLoadAnimation, loadAnimation } = FilterAndSort();
@@ -25,11 +25,11 @@ const Hero = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = "/images/hero-big-banner-svg.svg";
+    img.src = "images/hero-big-banner-svg.svg";
     img.onload = () => setBgImageLoaded(true);
 
     const imgMobile = new Image();
-    imgMobile.src = "/images/hero-mobile-svg.svg";
+    imgMobile.src = "images/hero-mobile-svg.svg";
     imgMobile.onload = () => setMobileBgLoaded(true);
   });
   return (
