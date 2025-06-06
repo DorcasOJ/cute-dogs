@@ -70,7 +70,7 @@ const SortButton = () => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] sm:w-[250px] h-[30pxp] justify-around btn-outline border border-[#0034595e] rounded-2xl text-lg font-medium cursor-pointer"
+            className="w-fit sm:w-[250px] h-[30pxp] justify-around btn-outline border border-[#0034595e] rounded-2xl text-base font-medium cursor-pointer"
           >
             {sortValue
               ? `Sort by ${

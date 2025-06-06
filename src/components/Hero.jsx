@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   //hero background image load with skeleton
   const [bgImageLoaded, setBgImageLoaded] = useState(false);
+  const [animationLoaded, setAnimationLoaded] = useState(false);
   const [mobileBgLoaded, setMobileBgLoaded] = useState(false);
   const { setLoadAnimation, loadAnimation } = FilterAndSort();
 
@@ -38,93 +39,72 @@ const Hero = () => {
           <>
             <div className="pt-20 bg-transparent min-h-[50vh] bg-gradient-to-br from-[#fceed5] bg-[url('/images/hero-big-banner-svg.svg')] from-60% to-[#003459] bg-cover bg-no-repeat bg-right-top rounded-xl pb-10">
               <div className="hero-content text-neutral-content  flex items-center justify-end ">
-                <div className=" text-[#efeff0] text-right flex flex-col lg:gap-3 md:px-[4%] lg:px-[3%] xl:px-[2%] lg:w-[60%] md:w-[60%]  items-end md:gap-3">
-                  <Fade
-                    duration={1500}
-                    className=" flex flex-col items-end justify-center md:gap-y-1 lg:gap-y-3"
-                    fraction={0.5} // Trigger when 50% visible
-                    triggerOnce
-                  >
+                <div className=" text-[#efeff0] text-right flex flex-col lg:gap-3 md:px-[4%] lg:px-[3%] xl:px-[2%] lg:w-[60%] md:w-[60%] items-end md:gap-3">
+                  <BlurText
+                    text=" One More Friend"
+                    delay={300}
+                    animateBy="words"
+                    direction="top"
+                    className="mb-2 md:text-4xl lg:text-5xl font-bold tracking-wide xl:tracking-wider pe-4 "
+                    onAnimationComplete={() => setAnimationLoaded(true)}
+                  />
+                  {animationLoaded && (
                     <BlurText
-                      text=" One More Friend"
-                      delay={200}
+                      text="Thousands More Fun!"
+                      delay={500}
                       animateBy="words"
                       direction="top"
-                      className="self-end text-right mb-2 md:text-4xl lg:text-5xl font-bold tracking-wide xl:tracking-wider pe-4 w-full "
+                      className="text-2xl mb-4 font-medium lg:text-4xl pe-4 "
+                      onAnimationComplete={() =>
+                        setLoadAnimation({
+                          heroCompleted: true,
+                        })
+                      }
                     />
+                  )}
 
-                    <Fade
-                      delay={1500}
-                      cascade
-                      damping={0.7}
-                      triggerOnce
-                      className="flex flex-col items-end  "
+                  <div className="mb-5 text-base self-end text-right font-light md:w-[85%] lg:text-lg lg:w-[55%] xl:w-[50%] pe-4 ">
+                    Having a pet means you have more joy, a new friend, a happy
+                    person who will always be with you to have fun. We have 200+
+                    different pets that can meet your needs!
+                  </div>
+
+                  <div className="flex flex-wrap gap-5 self-end pe-4 md:py-2  ">
+                    <GradientText
+                      colors={[
+                        "#40ffaa",
+                        "#4079ff",
+                        "#efeff0",
+                        "#40ffaa",
+                        "#fceed5",
+                        "#4079ff",
+                        "#40ffaa",
+                      ]}
+                      animationSpeed={3}
+                      showBorder={false}
+                      className="custom-class border rounded-full cursor-pointer hover:border-none "
                     >
-                      <BlurText
-                        text="Thousands More Fun!"
-                        delay={100}
-                        animateBy="words"
-                        direction="top"
-                        className="text-2xl mb-4 font-medium lg:text-4xl pe-4"
-                      />
-
-                      <div className="mb-5 text-base self-end text-right font-light md:w-[85%] lg:text-lg lg:w-[55%] xl:w-[50%] pe-4">
-                        Having a pet means you have more joy, a new friend, a
-                        happy person who will always be with you to have fun. We
-                        have 200+ different pets that can meet your needs!
-                      </div>
-
-                      <div className="flex flex-wrap gap-5 self-end pe-4 md:py-2  ">
-                        <Fade
-                          delay={3000} // Wait before starting
-                          duration={3000} // Animation duration
-                          fraction={0.5} // Trigger when 50% visible
-                          triggerOnce
-                        >
-                          <GradientText
-                            colors={[
-                              "#40ffaa",
-                              "#4079ff",
-                              "#efeff0",
-                              "#40ffaa",
-                              "#fceed5",
-                              "#4079ff",
-                              "#40ffaa",
-                            ]}
-                            animationSpeed={3}
-                            showBorder={false}
-                            className="custom-class border rounded-full cursor-pointer hover:border-none "
-                            onAnimationComplete={setTimeout(() => {
-                              setLoadAnimation({
-                                ...loadAnimation,
-                                heroCompleted: true,
-                              });
-                            }, 4000)}
-                          >
-                            <Link to="/intro">
-                              <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer btn-lg transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#fceed5] from-40% hover:to-[#003459] to-25% hover:shadow-none px-0">
-                                <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#003459] hover:to-[#fceed5] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5">
-                                  View{" "}
-                                  <span className="flex items-center gap-2">
-                                    Intro
-                                    <FaRegCirclePlay className="text-[#efeff0] text-lg" />
-                                  </span>
-                                </span>
-                              </button>
-                            </Link>
-                          </GradientText>
-                          <button
-                            onClick={scrollDownToCards}
-                            className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer btn-lg text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0"
-                          >
-                            <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-59% to-25% hover:text-transparent tracking-wider transition  text-[#003459] px-5">
-                              Explore Now!
+                      <Link to="/intro">
+                        <button className="btn btn-outline border shadow-md rounded-3xl  cursor-pointer btn-lg transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#fceed5] from-40% hover:to-[#003459] to-25% hover:shadow-none px-0">
+                          <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#003459] hover:to-[#fceed5] hover:bg-clip-text from-30% to-50% hover:text-transparent tracking-wider transition duration-200 px-5">
+                            View{" "}
+                            <span className="flex items-center gap-2">
+                              Intro
+                              <FaRegCirclePlay className="text-[#efeff0] text-lg" />
                             </span>
-                          </button>
-                        </Fade>
-                      </div>
-                    </Fade>
-                  </Fade>
+                          </span>
+                        </button>
+                      </Link>
+                    </GradientText>
+                    <button
+                      onClick={scrollDownToCards}
+                      className="btn btn-outline border shadow-md rounded-3xl bg-gradient-to-r from-[#fceed5] to-[#fceed2] cursor-pointer btn-lg text-[#003459]  transition duration-200 ease-in-out transform  hover:bg-gradient-to-r hover:from-[#003459] from-59% hover:to-[#fceed5] to-25% hover:shadow-none px-0"
+                    >
+                      <span className="w-full h-full flex items-center gap-2 hover:bg-gradient-to-r hover:from-[#fceed5] hover:to-[#003459] hover:bg-clip-text from-59% to-25% hover:text-transparent tracking-wider transition  text-[#003459] px-5">
+                        Explore Now!
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               {loadAnimation.heroCompleted && (
@@ -165,9 +145,11 @@ const Hero = () => {
                       delay={200}
                       animateBy="words"
                       direction="top"
-                      onAnimationComplete={() => {
-                        setLoadAnimation({ ...loadAnimation, bigText: true });
-                      }}
+                      onAnimationComplete={() =>
+                        setLoadAnimation({
+                          heroCompleted: true,
+                        })
+                      }
                       className="mb-2 text-3xl sm:text-4xl font-bold tracking-wide text-left"
                     />
 

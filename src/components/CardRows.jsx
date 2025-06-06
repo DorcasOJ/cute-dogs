@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { preloadImages, truncateText, formatPrice } from "../model/helpers";
+import { truncateText, formatPrice } from "../model/helpers";
 import SkeletonCard from "./SkeletonCard";
 import { Badge } from "@/components/ui/badge";
 import CardPagination from "./CardPagination";
@@ -23,14 +23,14 @@ const CardRows = () => {
   const { filterResult, loadAnimation } = FilterAndSort();
 
   useEffect(() => {
-    preloadImages(filterResult.map((dog) => dog.image_url)).then((results) => {
-      results.forEach(({ imgUrl, loaded }) => {
-        setLoadedCardImages((prev) => ({
-          ...prev,
-          [imgUrl]: loaded,
-        }));
+    filterResult
+      .map((dog) => dog.image_url)
+      .forEach((dogImgUrl) => {
+        const img = new Image();
+        img.src = dogImgUrl;
+        img.onload = () =>
+          setLoadedCardImages((prev) => ({ ...prev, [dogImgUrl]: true }));
       });
-    });
 
     if (endIndex > filterResult.length) {
       setEndIndex(filterResult.length);
