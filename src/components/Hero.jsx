@@ -25,11 +25,11 @@ const Hero = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = "images/hero-big-banner-svg.svg";
+    img.src = "/images/hero-big-banner-svg.svg";
     img.onload = () => setBgImageLoaded(true);
 
     const imgMobile = new Image();
-    imgMobile.src = "images/hero-mobile-svg.svg";
+    imgMobile.src = "/images/hero-mobile-svg.svg";
     imgMobile.onload = () => setMobileBgLoaded(true);
   });
   return (
