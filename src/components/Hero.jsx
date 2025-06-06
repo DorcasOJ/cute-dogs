@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   //hero background image load with skeleton
-  const [bgImageLoaded, setBgImageLoaded] = useState(false);
+  const [bgImageLoaded, setBgImageLoaded] = useState(true);
   const [animationLoaded, setAnimationLoaded] = useState(false);
   const [mobileBgLoaded, setMobileBgLoaded] = useState(false);
   const { setLoadAnimation, loadAnimation } = FilterAndSort();
