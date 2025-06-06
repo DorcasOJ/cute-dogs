@@ -165,7 +165,7 @@ const Hero = () => {
                           Thousands More Fun!{" "}
                         </h5>
                         <img
-                          src="/public/images/hero-mobile-rectangle.svg"
+                          src="/images/hero-mobile-rectangle.svg"
                           alt=""
                           className=""
                         />

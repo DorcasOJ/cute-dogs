@@ -246,7 +246,7 @@ const Navbar = () => {
             <li className=" relative flex items-center justify-center">
               {/* dropdown */}
               <img
-                src="/public/images/red-yellow-star.svg"
+                src="/images/red-yellow-star.svg"
                 alt=""
                 className="w-[18px]"
               />
